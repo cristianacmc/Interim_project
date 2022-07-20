@@ -1018,7 +1018,7 @@ Intercept: -6.361371532965329
 ### Observations:
 
 * Almost perfect positive linear correlations between all three variables, meaning if we know any of the three we can make accurate predications about the other two
-* **Do not assume correlation means causation**
+* **Do not assume correlation means causation**<br><br>
 
 ### Team: Nonty, Nina, Hazel, Cristiana and Cian<br><br>
 
