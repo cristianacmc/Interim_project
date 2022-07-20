@@ -2,8 +2,6 @@
 
 ### The AdventureWorks demo database serves as a great platform to practice SQL and data analytics skills. In this project, We are working as a team to answer a set of questions using the AdventureWorks dataset, a demo dataset maintained by Microsoft.<br><br>
 
-### Team: Nonty, Nina, Hazel, Cristiana and  Cian<br><br>
-
 ## Project Instructions and Deliverables
 
 1.	What are the regional sales in the best performing country?
@@ -21,7 +19,7 @@
 
 ### Question 1 - What are the regional sales in the best performing country?
 <hr/>
-<p>To tackel this question, I followed these steps:<br>
+<p>To tackle this question, I followed these steps:<br>
 
 * On SSMS I created a view as below:
  ```
@@ -37,8 +35,6 @@
 		  WHERE sh.OrderDate BETWEEN '2013-01-01' AND '2013-12-31'<br>
 		  GROUP BY st.[TerritoryID], st.[CountryRegionCode], st.Name, st.[Group], pr.Name
 ```
-
-
 * In order to find the best performing country, I used the pandas iloc function to select the first row and 
 <em>CountryCode</em> column and stored the result on <em>k_region</em> variable
 * Then I subset the dataframe column <em>CountryCode</em> with <em>k_region</em> variable to filter only the regions that belongs to the most performing country 
@@ -68,7 +64,7 @@ df1 = pd.read_sql_query('SELECT * FROM SalesRegionV ORDER BY TotalSales DESC', c
 # print the head of the dataframe object
 print(df1)
 ```
- ![](q1_table1.PNG)
+ ![](images/q1_table1.PNG)
 
 ```
  import numpy as np
@@ -147,7 +143,7 @@ plt.title("TOTAL SALES PER COUNTRY", fontsize=22, fontweight='bold')
 plt.show()
 ```
 
- ![](Q1chart_1.png)
+ ![](images/Q1chart_1.png)
 
   <p> As the table was ordered in descending order, the country with the best sales performance went to the top row, that is the <strong>United States</strong>.<br>
 Then I used slicing with the iloc function to select the indice of the first row and column of the dataframe which is the <em>CountryCode</em>.<br>
@@ -173,8 +169,6 @@ us_region = df_r.iloc[:, 2]
 # creating the variable total for the TotalSales values
 total = df_r.iloc[:, 3]
 ```
-
-
 ```
 # create the plot
 import matplotlib.pyplot as plt
@@ -187,12 +181,10 @@ plt.ylabel("Total Sales")
 plt.rcParams["figure.figsize"] = (9,7)
 plt.show()
 ```
-
-![](Q1chart_2.png)
+![](images/Q1chart_2.png)
 <br><br>
 
 ### Question 2 - What is the relationship between annual leave taken and bonus?
-
 <hr/>
 <p>The process of answering the question was completed as follows:<br>
 
@@ -213,7 +205,7 @@ df2 = pd.read_sql_query('SELECT * FROM AnnualLeave_bonnusV', conn)
 print(df2)
 ```
 
-![](q2_table1.png)
+![](images/q2_table1.png)
 <br>
 
 ```
@@ -227,7 +219,7 @@ plt.savefig('Q2scatter.png', dpi=300)
 plt.show()
 ```
 
-![](Q2_chart1.png)
+![](images/Q2_chart1.png)
 
 ```
 # plotting the relationship between vacation hours and bonus
@@ -239,11 +231,10 @@ graph.set_ylabel('Bonus in £s', size = 12 )
 graph.set_title('Relationship between Annual Leave and Bonus', size = 12 )
 plt.savefig('Q2regr.png', dpi=300)
 ```
-![](Q2_chart2.png)
+![](images/Q2_chart2.png)
 <br><br>
 
 ### Question 3 - What is the relationship between Country and Revenue?
-
 <hr/>
 
 * First I created the below query on SSMS to find out the annual revenue total for each country in all stores<br>
@@ -264,7 +255,7 @@ df3 = pd.read_sql_query('SELECT * FROM AnnualRevenue_Country ORDER BY Annual_Rev
 # Now I want to print the head of my dataframe object
 df3.head()
 ```
-![](q3_table1.png)
+![](images/q3_table1.png)
 
 <p> Then I created a new query to select the store in each country with the highest annual revenue <p> 
 
@@ -280,8 +271,7 @@ WHERE CountryRegionName = 'United Kingdom'
 GROUP BY CountryRegionName, a.Name, AnnualRevenue
 ORDER BY CountryRegionName, AnnualRevenue DESC;
 ```
-![](q3_table2.png)
-
+![](images/q3_table2.png)
 
 <p> Then I created a query to find out the numbers of stores in each country</p>
 
@@ -293,7 +283,6 @@ GROUP BY CountryRegionName;<br>
 ```
 <br><br>
 ### Question 4 - What is the relationship between sick leave and Job Title?
-
 <hr/>
 
 ```
@@ -315,7 +304,7 @@ SELECT e.BusinessEntityID AS id
 df4 = pd.read_sql(query, conn)
 df4.head()
 ```
-![](q4_table1.png)
+![](images/q4_table1.png)
 
 ### Data Understanding
 Check DataFrame shape
@@ -328,15 +317,15 @@ Generate an overview of the dataframe
 ```
 df4.info()
 ```
-![](q4_table2.png)
+![](images/q4_table2.png)
 
 df.describe().round(1)
 
-![](q4_table3.png)
+![](images/q4_table3.png)
 
 df4.describe(include="object")
 
-![](q4_table4.png)
+![](images/q4_table4.png)
 
 ```
 # check for null values
@@ -389,7 +378,6 @@ df4[to_convert] = df4[to_convert].astype("category")
 ```
 
 ### How is sick leave distributed?
-
 ```
 import seaborn as sns
 from matplotlib import rcParams
@@ -427,7 +415,7 @@ fig.savefig(
 )
 ```
 
-![](Q4_chart1.png)
+![](images/Q4_chart1.png)
 
 ### Observations: 
 * Almost flat distribution between 20 and 70 hours
@@ -477,7 +465,7 @@ fig.savefig(
 )
 ```
 
-![](Q4_chart2.png)
+![](images/Q4_chart2.png)
 
 ```
 job_count = df4.groupby("job_title", as_index=False).agg({"id": "count"})
@@ -520,7 +508,7 @@ During data preparation, the CEO was defined to have Organisation Level 0. Level
 )
 ```
 
-![](q4_table5.png)
+![](images/q4_table5.png)
 
 ```
 fig, ax = plt.subplots()
@@ -563,7 +551,7 @@ fig.savefig(
     dpi=150,
 )
 ```
-![](Q4_chart3.png)
+![](images/Q4_chart3.png)
 
 ### Observations:
 
@@ -584,7 +572,7 @@ group_order = (
 group_order
 ```
 
-![](Q4_table6.png)
+![](images/Q4_table6.png)
 
 ```
 fig, ax = plt.subplots()
@@ -626,11 +614,9 @@ fig.savefig(
     dpi=150,
 )
 ```
-
-![](Q4_chart4.png)
+![](images/Q4_chart4.png)
 
 ### Observations:
-
 * Manufacturing is by far the largest category, containing 185 of 290 employees (64%)
 * Quality Assurance has both the highest median sick leave and the smallest range
 
@@ -645,7 +631,7 @@ group_order = (
 group_order
 ```
 
-![](Q4_table7.png)
+![](images/Q4_table7.png)
 
 ```
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -691,15 +677,13 @@ fig.savefig(
 )
 ```
 
-![](Q4_chart5.png)
+![](images/Q4_chart5.png)
 
 ### Observations:
-
 Breakdown by Job Department probably most useful: very small standard deviation for all departments with 5 or more people, with the expection of Production
 <br><br>
 
 ### Question 5 - What is the relationship between store trading duration and revenue?
-
 <hr/>
 
 <p>To answer this question regarding the data from AdventureWorks2019, we must consider which data we need to import into the Jupyter Notebook to visualise with Python. The relevant data to answer this question is 'YearOpened' and 'AnnualRevenue', both of which can be found in the view 'Sales.vStoreWithDemographics'</p>
@@ -716,7 +700,7 @@ plt.tight_layout()
 df5.plot.scatter(x='YearOpened',y='AnnualRevenue',s=40,c='green', edgecolor='black', linewidth=1, alpha=0.1) 
 ```
 
-![](Q5_chart.png)
+![](images/Q5_chart.png)
 
 <p>As we can see from the scatter plot above showing the data of annual revenue for each store against the year that each store opened, there is no direct correlation between the two. Stores that have opened recently can achieve high values of revenue and vice versa, this is found similarly with stores opened decades ago.</p>
 
@@ -724,7 +708,7 @@ df5.plot.scatter(x='YearOpened',y='AnnualRevenue',s=40,c='green', edgecolor='bla
 correlation = df.corr()
 print(correlation)
 ```
-![](Q5_table.png)
+![](images/Q5_table.png)
 
 Above we can see the correlation values for each relationship in our dataframe. For year opened and annual revenue, we can see the correlation is very low (0.133635) unlike some other metrics such as sq footage of the store and it's annual revenue which is highly correlated with a value of 0.996531.
 <br><br>
@@ -751,8 +735,7 @@ SELECT BusinessEntityID AS id
 store = pd.read_sql(query, conn)
 store.head()
 ```
-![](q6_table1.png)
-
+![](images/q6_table1.png)
 
 ### Data Understanding
 Check DataFrame shape
@@ -765,16 +748,16 @@ Generate an overview of the dataframe
 ```
 store.info()
 ```
-![](q6_table2.png)
+![](images/q6_table2.png)
 
 ```
 store.describe().round(1)
 ```
-![](q6_table3.png)
+![](images/q6_table3.png)
 ```
 store.nunique()
 ```
-![](q6_table4.png)
+![](images/q6_table4.png)
 
 Check for null values
 ```
@@ -797,11 +780,9 @@ print(f"Duplicate row count: {store.duplicated(subset='id').sum()}")
 Duplicate row count: 0
 
 ### Observations:
-
 * Very small number of possible values for **annual_revenue** due to AdventureWorks being a generated database. Revenue is technically continuous data, so will be treated as such for this analysis
 
 ### Data Preparation
-
 **id** is categorical rather than numerical data
 ```
 store['id'] = store['id'].astype("category")
@@ -817,22 +798,20 @@ sns.pairplot(
     aspect=1
 )
 ```
-![](Q6_chart1.png)
+![](images/Q6_chart1.png)
 
 Correlation heatmap
 ```
 correlation = store.corr()
 correlation
 ```
-![](Q6_chart2.png)
+![](images/Q6_chart2.png)
 
 ```
 fig, ax = plt.subplots()
-
 ### Plotting ###
 mask = np.zeros_like(correlation)
 mask[np.triu_indices_from(mask, k=1)] = True
-
 sns.heatmap(
     correlation,
     annot=True,
@@ -845,7 +824,6 @@ sns.heatmap(
     linewidths=2.5,
     ax=ax
 )
-
 ### Formatting ###
 ticks = [0.5, 1.5, 2.5]
 labels = ['Annual revenue', 'Store size', 'Employee count']
@@ -856,7 +834,6 @@ ax.set(
     yticks=ticks,
     yticklabels=labels,
 )
-
 ### Saving ###
 fig.savefig(
     'Q6. Correlation heatmap.png',
@@ -865,14 +842,12 @@ fig.savefig(
     dpi=150,
 )
 ```
-![](Q6_chart3.png)
+![](images/Q6_chart3.png)
 
 ```
 # scatter plot
-
 fig, ax = plt.subplots()
 sns.despine()
-
 ### Plotting ###
 sns.regplot(
     x="annual_revenue",
@@ -893,7 +868,6 @@ sns.regplot(
         color='Crimson'
     ),
 )
-
 ### Formatting ###
 x_ticks = np.arange(0, 301, 50)
 y_ticks = np.arange(0, 81, 10)
@@ -907,7 +881,6 @@ ax.set(
     ylabel='Store size (square feet)',
     title='Annual Revenue vs Store size',
 )
-
 ### Saving ###
 fig.savefig(
     'Q6. Annual Revenue vs Store size.png',
@@ -916,8 +889,7 @@ fig.savefig(
     dpi=150,
 )
 ```
-![](Q6_chart4.png)
-
+![](images/Q6_chart4.png)
 ```
 ### Regression ###
 slope, intercept = np.polyfit(
@@ -925,17 +897,14 @@ slope, intercept = np.polyfit(
     y=store["square_footage"],
     deg=1
 )
-
 print(f"Slope: {slope}\nIntercept: {intercept}")
 ```
-
 Slope: 0.24833853208067522
 Intercept: 659.1618704104995
 
 ```
 fig, ax = plt.subplots()
 sns.despine()
-
 sns.regplot(
     x="annual_revenue",
     y="employee_count",
@@ -955,7 +924,6 @@ sns.regplot(
         color='Crimson'
     ),
 )
-
 ### Formatting ###
 x_ticks = np.arange(0, 301, 50)
 ax.set(
@@ -966,7 +934,6 @@ ax.set(
     ylabel='Number of Employees',
     title='Annual Revenue vs Employee count',
 )
-
 ### Saving ###
 fig.savefig(
     'Q6. Annual Revenue vs Employee count.png',
@@ -975,9 +942,7 @@ fig.savefig(
     dpi=150,
 )
 ```
-
-![](Q6_chart5.png)
-
+![](images/Q6_chart5.png)
 ```
 ### Regression ###
 slope, intercept = np.polyfit(
@@ -985,7 +950,6 @@ slope, intercept = np.polyfit(
     y=store["employee_count"],
     deg=1
 )
-
 print(f"Slope: {slope}\nIntercept: {intercept}")
 ```
 Slope: 0.0002877959125532897
@@ -997,10 +961,8 @@ https://stackoverflow.com/questions/64633018/removing-white-or-light-colors-from
 # 0.0 on Blues is almost pure white
 colors = plt.cm.Blues(np.linspace(0.4, 1.0, 10))
 new_Blues = LinearSegmentedColormap.from_list("new_Blues", colors)
-
 fig, ax = plt.subplots()
 sns.despine()
-
 ### Plotting ###
 sns.scatterplot(
     x="square_footage",
@@ -1012,8 +974,6 @@ sns.scatterplot(
     alpha=0.5,
     s=50
 )
-
-
 ### Formatting ###
 x_ticks = np.arange(0, 81, 10)
 ax.set(
@@ -1033,8 +993,6 @@ ax.legend(
     loc='best',
     bbox_to_anchor=(1, 1),
 )
-
-
 ### Saving ###
 fig.savefig(
     'Q6. Store size vs Employee count.png',
@@ -1043,7 +1001,7 @@ fig.savefig(
     dpi=150,
 )
 ```
-![](Q6_chart6.png)
+![](images/Q6_chart6.png)
 
 ```
 ### Regression ###
@@ -1052,7 +1010,6 @@ slope, intercept = np.polyfit(
     y=store["employee_count"],
     deg=1
 )
-
 print(f"Slope: {slope}\nIntercept: {intercept}")
 ```
 Slope: 0.001171348358096566
@@ -1062,3 +1019,15 @@ Intercept: -6.361371532965329
 
 * Almost perfect positive linear correlations between all three variables, meaning if we know any of the three we can make accurate predications about the other two
 * **Do not assume correlation means causation**
+
+### Team: Nonty, Nina, Hazel, Cristiana and Cian<br><br>
+
+### Resources used:
+* Python
+* Pandas
+* Matplotlib
+* Seaborn
+* Jupyter
+* SQL Server 
+* SQL 
+* StackOverflow
