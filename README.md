@@ -317,15 +317,15 @@ Generate an overview of the dataframe
 ```
 df4.info()
 ```
-![](images/q4_table2.png)
+![](images/q4_table2.PNG)
 
 df.describe().round(1)
 
-![](images/q4_table3.png)
+![](images/q4_table3.PNG)
 
 df4.describe(include="object")
 
-![](images/q4_table4.png)
+![](images/q4_table4.PNG)
 
 ```
 # check for null values
@@ -508,7 +508,7 @@ During data preparation, the CEO was defined to have Organisation Level 0. Level
 )
 ```
 
-![](images/q4_table5.png)
+![](images/q4_table5.PNG)
 
 ```
 fig, ax = plt.subplots()
@@ -572,7 +572,7 @@ group_order = (
 group_order
 ```
 
-![](images/Q4_table6.png)
+![](images/q4_table6.PNG)
 
 ```
 fig, ax = plt.subplots()
@@ -631,7 +631,7 @@ group_order = (
 group_order
 ```
 
-![](images/Q4_table7.png)
+![](images/q4_table7.PNG)
 
 ```
 fig, ax = plt.subplots(figsize=(10, 10))
@@ -708,7 +708,7 @@ df5.plot.scatter(x='YearOpened',y='AnnualRevenue',s=40,c='green', edgecolor='bla
 correlation = df.corr()
 print(correlation)
 ```
-![](images/Q5_table.png)
+![](images/q5_table.PNG)
 
 Above we can see the correlation values for each relationship in our dataframe. For year opened and annual revenue, we can see the correlation is very low (0.133635) unlike some other metrics such as sq footage of the store and it's annual revenue which is highly correlated with a value of 0.996531.
 <br><br>
@@ -748,16 +748,16 @@ Generate an overview of the dataframe
 ```
 store.info()
 ```
-![](images/q6_table2.png)
+![](images/q6_table2.PNG)
 
 ```
 store.describe().round(1)
 ```
-![](images/q6_table3.png)
+![](images/q6_table3.PNG)
 ```
 store.nunique()
 ```
-![](images/q6_table4.png)
+![](images/q6_table4.PNG)
 
 Check for null values
 ```
@@ -805,7 +805,7 @@ Correlation heatmap
 correlation = store.corr()
 correlation
 ```
-![](images/Q6_chart2.png)
+![](images/Q6_chart2.PNG)
 
 ```
 fig, ax = plt.subplots()
